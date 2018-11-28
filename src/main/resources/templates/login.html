@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1991/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>doHelp | 登陆</title>
+
+    <link th:href="@{/static/css/xiaoguo1/styles.css}" rel="stylesheet">
+    <link th:href="@{/static/css/xiaoguo1/demo.css}" rel="stylesheet">
+    <link th:href="@{/static/css/xiaoguo1/layui.css}" rel="stylesheet">
+    
+    <script th:src="@{/static/js/jquery-2.1.1.js}"></script>
+    <script th:src="@{/static/js/xiaoguo1/Particleground.js}"></script>
+    <script th:src="@{/static/js/xiaoguo1/Treatment.js}"></script>
+
+</head>
+
+<body>
+
+	<div class='login'>
+		<div class='login_title'>
+			<span>用户登录</span>
+
+		</div>
+		<div class='login_fields'>
+		
+				<form  th:method="post"	action="./login" id="ctl00"  th:object="${user}">
+		
+			<div class='login_fields__user'>
+				<div class='icon'>
+					<img alt=""	th:src="@{/static/img/xiaoguo1/user_icon_copy.png}">
+				</div>
+					<input type="text" placeholder='用户帐号' name="email" id="txtUsername"
+						class="textbox"  th:field="*{user_phone}" autocomplete="off" required />
+					<div class='validation'>
+						<img alt="" th:src="@{/static/img/xiaoguo1/tick.png}">
+					</div>
+			</div>
+			<div class='login_fields__password'>
+			
+				<div class='icon'>
+					<img alt="" th:src="@{/static/img/xiaoguo1/lock_icon_copy.png}">
+				</div>
+				
+				<input type="password" placeholder='密码' name="password" 
+					id="txtPassword"  class="textbox"  th:field="*{user_password}"required />
+				
+				<div class='validation'>
+					  <img alt=""  th:src="@{/static/img/xiaoguo1/tick.png}">
+				</div>
+			</div>
+			<div class='login_fields__password'>
+				<div class='validation' style="opacity: 1; right: -5px; top: -3px;">
+					<canvas class="J_codeimg" id="myCanvas"></canvas>
+				</div>
+			   </div>
+			   
+			<div class='login_fields__submit'>
+				<input type="submit" id="btnSignCheck" class="button_enter"
+					value="登 录" />
+			</div>
+			</form>
+			<div class='disclaimer'>
+				
+					<h3>您还不是do Help网用户？</h3> 
+			    
+				<p class="set_up">
+					<a th:href="@{/toRegister}" ><h2>创建一个新用户&gt;&gt;</h2></a>
+				</p>
+			</div>
+		</div>
+		
+		
+	</div>
+</body>
+
+</html>

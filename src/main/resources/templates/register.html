@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1991/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>doHelp | 注册</title>
+
+    <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/static/font-awesome/css/font-awesome.css}" rel="stylesheet">
+    <link th:href="@{/static/css/plugins/iCheck/custom.css}" rel="stylesheet">
+    <link th:href="@{/static/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/static/css/style.css}" rel="stylesheet">
+    <!-- Mainly scripts -->
+    <script th:src="@{/static/js/jquery-2.1.1.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    
+</head>
+
+<body class="gray-bg1">
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+                <h5 class="logo-name">doHelp</h5>
+            </div>
+            <form class="m-t" role="form" method="post" action="./register" th:object="${user}">
+                
+                <div class="form-group">
+                    <input type="text" class="form-control" id="textPhone" placeholder="手机号" th:field="*{user_phone}" >
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="密码" id="passWord"  th:field="*{user_password}" >
+                </div>
+                   <input type="submit"   class="btn btn-primary block full-width m-b"  value="注册">
+ </form>
+                <!-- <div class="form-group">
+                <input name="phoneCode" type="text" id="txtPhoneCode" class="form-controlLeft" placeholder="验证码"  >
+			   <input type="button" id="btnSendCode" name="btnSendCode" class="form-controlRight" value="免费获取验证码" > 	  <!-- 1819 -->		
+               
+               
+           
+                <p class="text-muted text-center"><small>已经有一个账户?</small></p>
+                <a class="btn btn-sm btn-white btn-block" th:href="@{/login}">登陆</a>
+           
+            <p class="m-t"> <small>do Help网站  &copy; 2018</small> </p>
+        </div>
+    </div>
+
+ 
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+        /* 自定义验证提示信息 */
+         function tip(i,message){
+        	if(i.validity.patternMismatch === true){
+        		i.setCustomValidity(message);
+        	}else{
+        		i.setCustomValidity("");
+        	}
+        }
+    </script>
+</body>
+
+</html>

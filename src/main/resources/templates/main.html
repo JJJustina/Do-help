@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:th="http://www.thymeleaf.org"  
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>do Help |主页面</title>
+    <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet"/> 
+    <link th:href="@{/static/font-awesome/css/font-awesome.css}" rel="stylesheet"/> 
+    <link th:href="@{/static/css/animate.css}" rel="stylesheet"/> 
+    <link th:href="@{/static/css/style.css}" rel="stylesheet"/> 
+    <link th:href="@{/static/css/imagehover.css} " rel="stylesheet" />
+             <!-- 主要 scripts --> 
+    <script th:src="@{/static/js/jquery-2.1.1.js}"></script> 
+    <script th:src="@{/static/js/bootstrap.min.js}"></script> 
+    <script th:src="@{/static/js/plugins/metisMenu/jquery.metisMenu.js}"></script> 
+    <script th:src="@{/static/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script> 
+             <!-- 自定义和插件 javascript --> 
+    <script th:src="@{/static/js/inspinia.js}"></script> 
+    <script th:src="@{/static/js/plugins/pace/pace.min.js}"></script> 
+  
+    <script  language="Javascript"> 
+        $(document).ready(function(){ 
+            $('.contact-box').each(function() { 
+                animationHover(this, 'pulse'); 
+            }); 
+  /*function accountStatus(user){
+  var accountCount=user.getAttribute("data-user-accountcount");
+     alert(accountCount);
+  }
+    function accountStatus(){
+	  var  accountCount=$(this).prop("data-useraccountcount");
+	  alert(accountCount);
+	  $("figcaption").css("background-color","#183bd2");
+	    }
+        */
+        
+          $("img").hover(function(){
+                 var user_accountCount= $("#user_accountCount").val();
+                 if(user_accountCount>=100)
+                                      $("figcaption").css("background-color","#17dbd4");
+                                     else
+                                         if(user_accountCount>=80 && user_accountCount<100)
+                                             $("figcaption").css("background-color","#183bd2");
+                                         else
+                                             if(user_accountCount>=60 && user_accountCount<80)
+                                                 $("figcaption").css("background-color","#eef317");
+                                             else
+                                                 if(user_accountCount<60 && user_accountCount>=0)
+                                                     $("figcaption").css("background-color","red");
+                                                 else
+                                                         $("figcaption").css("background-color","#373b39");
+              });
+$("#li1").hide();
+$("#li2").hide();
+$("#li3").hide();
+$("#li4").hide();
+$("#limain").hover(function(){
+$("#li1").show(1000);
+$("#li2").show(1000);
+$("#li3").show(1000);
+$("#li4").show(1000);
+	  })
+$("#limain").mouseout(function(){
+    	$("#li1").hide(10000);
+    	$("#li2").hide(10000);
+    	$("#li3").hide(10000);
+    	$("#li4").hide(10000);
+        })  
+
+        }); 
+    </script> 
+    
+</head>
+<body>
+<form>
+ <input id="user_accountCount" type="hidden" th:value="${session.userRedis.user_accountCount}" >
+</form>
+ <div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation"> 
+        <div class="sidebar-collapse"> 
+            <ul class="nav metismenu" id="side-menu"> 
+                <li class="nav-header"> 
+                    <div class="dropdown profile-element"> 
+                    <span> 
+                    <!--  css:31 为显示数据的背景颜色以及显示字体的颜色的设定   css:735  为刚显示或者刚失去焦点出现的动画的背景颜色 -->
+                    <figure class="imghvr-shutter-out-diag-2">
+                    
+                    <img alt="image"  class="img-circle" th:src="@{/static/img/a6.jpg}"  th:attr="data-useraccountcount=${session.userRedis.user_accountCount}"  onmousemove="accountStatus()" /> 
+                        <figcaption>
+                    <strong class="font-bold">毕业学校：</strong><br><strong class="font-bold" th:text="${session.userRedis.user_graduateSchoolAt}"></strong>
+                    <strong  class="font-bold">安全分数：</strong><br><strong class="font-bold" th:text="${session.userRedis.user_accountCount}"></strong>
+                    </figcaption>
+                    </figure>
+                    </span> 
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> 
+                            <span class="clear"> <span class="block m-t-xs"> 
+                            <strong class="font-bold" th:text="${session.userRedis.user_realName}">kian</strong> 
+                             </span> <span class="text-muted text-xs block">程序员 
+                             <b class="caret"></b></span> </span> </a>   <!--  <b class="caret>></b> 点击显示退出链接 -->
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs"> 
+                            <li><a href="./logout">退出</a></li> 
+                        </ul> 
+                    </div> 
+                    <div class="logo-element">   <!-- 第二个左侧显示效果 -->
+                        doHelp
+                    </div> 
+                </li> 
+                <li> 
+                    <a href="./main">
+                    <i class="fa fa-diamond"></i>   <!-- 值为::before   为砖石图标 -->
+                    <span class="nav-label">主页</span>
+                    </a> 
+                </li> 
+                 <li  id="limain"> 
+                    <a href="./selfMessage">
+                    <i class="fa fa-diamond"></i>   <!-- 值为::before   为砖石图标 -->
+                    <span class="nav-label">个人信息</span>
+                    </a> 
+                 </li> 
+               <li   id="li1"> 
+                    <a href="./changeMessage">
+                    <i class="fa fa-diamond"></i>   <!-- 值为::before   为砖石图标 -->
+                    <span class="nav-label">修改</span>
+                    </a> 
+                 </li> 
+               <li   id="li2"> 
+                    <a href="./changePassWord">
+                    <i class="fa fa-diamond"></i>   <!-- 值为::before   为砖石图标 -->
+                    <span class="nav-label">修改密码</span>
+                    </a> 
+                 </li> 
+                <li  id="li3"> 
+                    <a href="./photoUpload">
+                    <i class="fa fa-diamond"></i>   <!-- 值为::before   为砖石图标 -->
+                    <span class="nav-label">上传相片</span>
+                    </a> 
+                 </li>
+               <li  id="li4"> 
+                    <a href="./remarksPublish">
+                    <i class="fa fa-diamond"></i>   <!-- 值为::before   为砖石图标 -->
+                    <span class="nav-label">感言</span>
+                    </a> 
+                 </li>
+              
+              
+            </ul> 
+        </div> 
+    </nav> 
+  </div>
+  
+   <div id="page-wrapper" class="gray-bg"> 
+   
+   
+        <div class="row border-bottom"> 
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0"> 
+        <div class="navbar-header"> 
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"> <!-- 这个为换左侧显示按钮 -->
+            <i class="fa fa-bars"></i>
+             </a> 
+            <form role="search" class="navbar-form-custom" action="search_results.html">  <!--  搜索栏 -->
+                <div class="form-group"> 
+                    <input type="text" placeholder="你要找什么，请戳我..." class="form-control" name="top-search" 
+id="top-search"/> 
+                </div> 	
+            </form> 
+        </div> 
+                       <!--欢迎以及退出按钮  -->
+            <ul class="nav navbar-top-links navbar-right"> 
+         
+                <li> 
+                    <span class="m-r-sm text-muted welcome-message">欢迎来到 doHelp</span> 
+                </li> 
+                   <li>
+            <a id="modal-330325" href="#modal-container-330325" role="button" class="btn" data-toggle="modal">关于我们？</a>
+			<div class="modal fade" id="modal-container-330325" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								doHelp之家
+							</h4>
+						</div>
+						<div class="modal-body">
+						对于很多学生在大学期间针对自己专业不清楚要做什么？学的知识有什么用？公司需要你会什么？等一系列问题，这就需要一个平台让学生从最初的大学生活开始，就能对自己专业有一个较为清晰的了解，以及让一些即将毕业的学生能够知道公司里面的一些事情，让大学生能更有规划的去学习一些专业性的知识以及对未来充满信心。为了实现这些初衷，我们将以“我们的未来、学校的未来、社会的未来，学长学姐来助力”为主题，打造一个“高明确、高团结、高荣誉、高意义”的知识、经验分享平台，在do help网站中，本校已经在工作实习的学长学姐或者大学老师以视频、音频或者文字分享的方式来分享知识、经验。
+
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			</li>
+                <li> 
+                    <a href="./logout"> 
+                        <i class="fa fa-sign-out"></i> 退出 
+                    </a> 
+                </li> 
+            </ul> 
+            
+        </nav> 
+        </div> 
+        
+                   <!--  主页轮播图  -->
+			<div class="carousel slide" id="myCarousel">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-973058">
+					</li>
+					<li data-slide-to="1" data-target="#myCarousel">
+					</li>
+					<li data-slide-to="2" data-target="#myCarousel">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img alt="" th:src="@{/static/img/main/main1.jpg}" />
+						<div class="carousel-caption">
+							<h4></h4>
+							<p></p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt=""  th:src="@{/static/img/main/main6.png}"  />
+						<div class="carousel-caption">
+							<h4></h4>
+							<p></p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt=""  th:src="@{/static/img/main/main7.png}" />
+						<div class="carousel-caption">
+							<h4></h4>
+							<p></p>
+						</div>
+					</div>
+					
+				</div>
+	 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+	<span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a class="right carousel-control" href="#myCarousel" data-slide="next">
+	 <span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+	
+         <!--   五核心     -->
+            <div class="series-list">
+		<div class="container ">
+			<div class="series-list-bd">
+				<div class="series-item" onclick="location.href='projects?seriesId=1'">
+					<img th:src="@{/static/img/main/video2.png}" class="series-img" alt="">
+					<div class="series-text">
+						<div class="series-title">Video |集锦</div>
+						<div class="series-intro">视频</div>
+					</div>
+				</div>
+				<div class="series-item" onclick="location.href='projects?seriesId=3'">
+					<img th:src="@{/static/img/main/audio2.png}" class="series-img" alt="">
+					<div class="series-text">
+						<div class="series-title">Audio |集锦</div>
+						<div class="series-intro">音频</div>
+					</div>
+				</div>
+				<div class="series-item" onclick="location.href='projects?seriesId=4'">
+					<img th:src="@{/static/img/main/article2.png}" class="series-img" alt="">
+					<div class="series-text">
+						<div class="series-title">Article |集锦</div>
+						<div class="series-intro">文字</div>
+					</div>
+				</div>
+				<div class="series-item" onclick="location.href='projects?seriesId=4'">
+					<img th:src="@{/static/img/main/communities.png}" class="series-img" alt="">
+					<div class="series-text">
+						<div class="series-title">互动社区 </div>
+						<div class="series-intro">互动</div>
+					</div>
+				</div>
+				
+				<div class="series-item" onclick="location.href='/liveList'">
+					<img th:src="@{/static/img/main/zhibo2.png}" class="series-img" alt="">
+					<div class="series-text">
+						<div class="series-title">直播在线</div>
+						<div class="series-intro">直播</div>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+             
+             
+             
+                
+        <!-- 用户感言轮播板块 -->
+			<div class="carousel slide" id="myCarousel1">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-973058">
+					</li>
+					<li data-slide-to="1" data-target="#myCarousel1">
+					</li>
+					<li data-slide-to="2" data-target="#myCarousel1">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a2.jpg}" />
+						<h3>
+								Thumbnail label
+							</h3>
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a3.jpg}"  />
+						<h3>
+								Thumbnail label
+							</h3>
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a4.jpg}" />
+						<h3>
+								Thumbnail label
+							</h3>
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+						<div class="carousel-caption">
+							<h4></h4>
+							<p></p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a5.jpg}" />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200"  th:src="@{/static/img/a6.jpg}"  />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a7.jpg}"  />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+						<div class="carousel-caption">
+							<h4></h4>
+							<p></p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a8.jpg}" />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a1.jpg}"  />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="200x200" th:src="@{/static/img/a2.jpg}" />
+						<div class="caption">
+							<h3>
+								Thumbnail label
+							</h3>
+							<p>
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="#">Action</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+						<div class="carousel-caption">
+							<h4></h4>
+							<p></p>
+						</div>
+					</div>
+					
+				</div>
+	 <a class="left carousel-control" href="#myCarousel1" data-slide="prev">
+	<span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a class="right carousel-control" href="#myCarousel1
+	" data-slide="next">
+	 <span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div> 
+            
+            
+</body>
+</html>

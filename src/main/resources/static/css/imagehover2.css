@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Microsoft yahei", Arial;
+
+}
+span ul li {
+	float: left;
+	width: 128px;
+	height: 128px;
+	list-style: none;
+	position: relative;
+	overflow: hidden;
+}
+
+span ul li .cover a {    /* 为遮盖超链接圆形 */
+	width: 20px;
+	height: 20px;
+	background: #ffffff;
+	display: block;
+	border-radius: 50%;
+	line-height: 30px;
+	margin: 20px auto;
+}
+
+span ul li .cover a i {
+	color: red;
+}
+
+span ul li .cover {
+	width: 128px;
+	height: 128px;
+	background: rgba(255, 39, 42, 0.7);
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	color: #ffffff;  /* 字体颜色 */
+	
+	
+	
+	transform-origin: right bottom;
+	-webkit-transform-origin: right bottom;
+	-moz-transform-origin: right bottom;
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	transition: all 0.35s;
+	-webkit-transition: all 0.35s;
+	-moz-transition: all 0.35s;
+}
+
+span ul li .cover p {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+span ul li:hover .cover {
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}

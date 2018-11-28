@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1991/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>doHelp | 登陆</title>
+
+    <link th:href="@{/static/css/bootstrap.min.css}"  rel="stylesheet" >
+    <link th:href="@{/static/font-awesome/css/font-awesome.css}" rel="stylesheet">
+    <link th:href="@{/static/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/static/css/style.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="loginColumns animated fadeInDown">
+        <div class="row">
+            <div class="col-md-6">
+         
+	    <h2 class="font-bold">欢迎来到 do Help</h2>
+
+                <p>
+                                                   这是一个知识、经验分享台...
+                </p>
+
+                <p>
+                   	在这里，有知识用处的讲解...
+                </p>
+
+                <p>
+                	在这里，有公司需要的讲解...
+                </p>
+
+                <p>
+                	在这里，有公司故事的讲解... 
+                </p>
+                <p>
+                	你们的未来、学校的未来、社会的未来，学长学姐来助力！
+                </p>
+   </div>
+           <div class="col-md-6">
+                <div class="ibox-content">
+                    <form class="m-t" role="form" action="./managerLogin" th:method="post" th:object="${managers}">
+                       	<p th:text="${errorMessage}" style="color:red"></p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="管理员账号"  th:field="*{manager_phone}">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="密码" th:field="*{manager_password}" >
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">登陆</button>
+
+                        <a href="login_two_columns.html#">
+                            <small>忘记密码？</small>
+                        </a>
+                     <a th:href="@{/login}" ><small>切换至用户登入</small></a>
+                        <p class="text-muted text-center">
+                            <small>你有一个账号?</small>
+                        </p>
+                        <a class="btn btn-sm btn-white btn-block" th:href="@{/toRegister}">注册</a>
+                    </form>
+                    <p class="m-t">
+                        <small>do Help网站 &copy; 2018</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-6">
+               	江西师范大学--李克尘、程佳乐
+            </div>
+            <div class="col-md-6 text-right">
+               <small>© 2018-2019</small>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
